@@ -1,0 +1,92 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ifcvprfinal\pagestyle{empty}\fi
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Tetris - Reinforcement Learning$^2$}
+
+\author{Paul Kehnel\\
+{\tt\small ga65coy@mytum.de}
+\and
+Sebastian Fellner\\
+{\tt\small ga96kug@mytum.de}
+\and
+Simon Speth\\
+{\tt\small ga96tov@mytum.de}
+\and
+Benedikt Wiberg\\
+{\tt\small b.wiberg@tum.de}
+%\and
+%Team Member 5\\
+%{\tt\small fifth@i1.org}
+}
+
+
+\maketitle
+%\thispagestyle{empty}
+
+%
+% Proposal I
+%
+\section*{Project Proposal}
+
+\section{Introduction}
+   Tetris is a good example task for reinforcement learning.  It is an interesting problem, because it is quite hard in a mathematical sense since "Finding the optimal strategy is NP-hard even if the sequence of tetrominoes
+    is known in advance."\cite{szita2006learning} 
+ But since superhuman perfomance is still easily achievable, we want to approach "Blind-Tetris". Our inspiration was this \href{https://www.youtube.com/watch?v=8kqKOlcaZuI&t=5m10s}{Tetris Video} we found on Youtube. 
+       We first want to train a reinforcement learning agent to play tetris. Afterwards we iteratively limit the input information about the game state to complicate the problem. If we have time, we would like to try the different advancements made in reinforcement learning described in \cite{hessel2017rainbow} to improve our solution.
+           
+
+    \subsection{Related Works}
+        \begin{itemize}
+            \item {\textbf{Learning Tetris using the noisy cross-entropy method:}}
+            This is one of the older approaches. They apply noise for preventing early convergence of the cross-entropy method, by that optimising and outperforming previous RL algorithms. \cite{szita2006learning}
+           
+	 \item {\textbf{Playing atari with deep reinforcement learning:}}
+            In the field of reinforcement learning, this paper by Deepmind  is currently one of the most impressive works and can be seen as fundamental part for further improvements. \cite{mnih2013playing}
+
+            \item \textbf{{Rainbow: Combining Improvements in Deep Reinforcement Learning:}}
+            This is currently state of the art, by combining different enhancements for DQN.
+            This is crucial for selecting well fitting enhancements for our problem. \cite{hessel2017rainbow}
+        \end{itemize}
+
+\section{Dataset}
+    	Since we are using reinforcement learning there is no need for collecting data beforehand. If we want to try supervised training we may need to record ourselves playing the game for a few hours. We may need to implement our own version of tetris fitted for our needs or we will use one of the numerous \href{https://gist.github.com/silvasur/565419}{Open Source} implementations.
+        
+        Data collected during runtime will most likely not be independent and identically distributed, as a result we will have to apply some additional processing steps, like experience replay. Also feedback-loops could appear. Furthermore because we are designing the reward function, our data will be automatically labelled. 
+        
+        Finally our data input will consist of matrix describing the gamestate and the next piece. Logical actions consisting of rotation and placement of the next piece will be the output.
+
+\section{Methodology}
+    After we fitted an implementation of tetris to our needs, we will first train a Deep Q-Network from scratch on the normal tetris task. This will set our baseline. Afterwards we will remove gamestate information consisting of n bottom rows. We will add LSTM-Cells to train our network to implicitly learn the removed gamestate. If we cant match our baseline, we will try leveraging the advancements described in \cite{hessel2017rainbow} and/or use hybrid learning techniques\cite{henderson2005hybrid}. Because implementing tetris on a GPU is not an easy task, we will be limited to train on a CPU.
+
+\section{Outcome}
+   We want to see how much information the agent can retain about the gamestate. Our desired output would be an agent that can play tetris by just getting the next piece as input.
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{bib}
+}
+
+\end{document}
