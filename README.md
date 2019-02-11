@@ -24,7 +24,7 @@ activation function. To address all possible tetromino placements, a batch of da
 where the score is computed in parallel. In the end, the placement with the highest score is choosen and executed
 with regard to an epsilon-greedy policy.
 
-![Architecture](https://github.com/qway/dqn_tetris/blob/master/documentation/images/architecture.png)
+![Architecture](https://github.com/qway/dqn_tetris/blob/master/documentation/images/network.png)
 
 __Conclusion__
 
