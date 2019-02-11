@@ -14,6 +14,8 @@ We set our task to use Reinforcement Learning (RL) with Con-
 volutional Neural Networks (CNN) to learn optimal control
 policies for Tetris.
 
+![Environment](https://github.com/qway/dqn_tetris/blob/master/documentation/images/agent_env_loop.png)
+
 __Architecture__
 
 We employ a custom architecture using 1 dimensional convolutions to quickly reduce spatial size. After two additional
@@ -21,6 +23,8 @@ linear layers we are left with the q-value of the proposed action. All layers ex
 activation function. To address all possible tetromino placements, a batch of data consists of 34 possible placements 5
 where the score is computed in parallel. In the end, the placement with the highest score is choosen and executed
 with regard to an epsilon-greedy policy.
+
+![Architecture](https://github.com/qway/dqn_tetris/blob/master/documentation/images/architecture.png)
 
 __Conclusion__
 
